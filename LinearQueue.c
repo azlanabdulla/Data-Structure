@@ -71,20 +71,4 @@ void main(){
 			continue;
 		}
 	}
-    // eq(3);
-    // eq(5);
-    // eq(8);
-    // eq(3);
-    // eq(1);
-    // display();
-    // dq();
-    // dq();
-    // dq();
-    // display();
-    // eq(3);
-    // eq(5);
-
-
-
-
 }
