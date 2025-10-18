@@ -56,6 +56,10 @@ struct state pour(struct state s, int from, int to) {
     return newstate;
 }
 
+void printState(struct state s) {
+    printf("(%d, %d, %d)\n", s.a, s.b, s.c);
+}
+
 int main() {
     struct Queue q;
     initQueue(&q);
@@ -69,14 +73,18 @@ int main() {
     enqueue(&q, start);
     visited[start.a][start.b][start.c] = true;
 
+    printf("Exploring States:\n");
+    printState(start);
+
     while (!isEmpty(&q)) {
         struct state cur = dequeue(&q);
 
         if (cur.a == 2 || cur.b == 2 || cur.c == 2) {
-            printf("Goal Reached: A=%d, B=%d, C=%d\n", cur.a, cur.b, cur.c);
+            printf("\nGoal Reached: A=%d, B=%d, C=%d\n", cur.a, cur.b, cur.c);
             return 0;
         }
 
+        
         for (int from = 0; from < 3; from++) {
             for (int to = 0; to < 3; to++) {
                 if (from != to) {
@@ -84,12 +92,13 @@ int main() {
                     if (!visited[next.a][next.b][next.c]) {
                         visited[next.a][next.b][next.c] = true;
                         enqueue(&q, next);
+                        printState(next); 
                     }
                 }
             }
         }
     }
 
-    printf("No Solution Found\n");
+    printf("\nNo Solution Found\n");
     return 0;
 }
